@@ -25,8 +25,10 @@ export class NodeServerClass {
 
   start = async (port?: string) => {
     try {
+      const port = ENV.port;
       this.init();
-      await this.app.listen(port ?? ENV.port);
+      await this.app.listen(port ?? port);
+      console.log(`BACKEND STARTED AT PORT ${port} 🚀🚀`);
     } catch (error: any) {
       throw new AppException(error.message);
     }
