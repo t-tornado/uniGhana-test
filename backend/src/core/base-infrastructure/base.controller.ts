@@ -5,10 +5,10 @@ export class BaseControllerClass {
     return res.status(200).json({ data });
   };
 
-  protected unauthorized = (res: Response) => {
+  protected unauthorized = (res: Response, message?: string) => {
     return res
       .status(401)
-      .json({ error: "This client request is unauthorized" });
+      .json({ error: message ?? "This client request is unauthorized" });
   };
 
   protected clientError = (res: Response, errors?: any[]) => {
