@@ -1,4 +1,4 @@
-import { AppException, PasswordUtil } from "../core";
+import { PasswordUtil } from "../core";
 import { UserType } from "./user.model";
 import { UserRepository } from "./user.repository";
 
@@ -10,11 +10,15 @@ class UserServiceClass {
   }
 
   login = async (email: string, password: string) => {
-    let isPassword = false;
+    let loginSuccessFul = false;
     const user = await this.repository.getDocument({ email });
-    if (!user) throw new AppException("User with email not found");
-    isPassword = await PasswordUtil.decodePassword(password, user?.password);
-    return isPassword;
+    if (user) {
+      loginSuccessFul = await PasswordUtil.decodePassword(
+        password,
+        user?.password
+      );
+    }
+    return loginSuccessFul;
   };
 
   signup = async ({ email, password, username }: UserType) => {
