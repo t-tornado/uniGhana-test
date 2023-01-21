@@ -3,7 +3,7 @@ import { AxiosError } from "axios";
 export const HttpWithErrorWrapper = (cb?: Function) => {
   return async function (...args: any[]) {
     try {
-      await cb?.(...args);
+      return await cb?.(...args);
     } catch (error: any) {
       if (error instanceof AxiosError) {
         throw new Error(error.response?.data?.error);

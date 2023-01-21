@@ -14,7 +14,7 @@ class ClientStorageClass {
   };
 
   get = (id: ClientStorageItems) => {
-    const data = JSON.parse(this.storage.getItem(id) ?? "");
+    const data = JSON.parse(this.storage.getItem(id) ?? "{}");
     return data;
   };
 

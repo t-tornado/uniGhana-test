@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import { UserController } from "../../controller";
 
 interface Props {
   children: JSX.Element;
@@ -6,8 +7,8 @@ interface Props {
 
 export const ProtectedRoute = ({ children }: Props) => {
   const navigate = useNavigate();
-  const isLoggedIn = true;
-  if (!isLoggedIn) {
+  const loggedInUserObject = UserController.loadLoggedInUserData();
+  if (loggedInUserObject?.email === undefined) {
     navigate("/login");
     return null;
   }
