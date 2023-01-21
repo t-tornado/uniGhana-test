@@ -1,1 +1,1 @@
-export { Controller } from "./app.controller";
+export { Http } from "./app.httpClient";

@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { Logo } from "../atoms";
 import { AuthError } from "../AuthError";
 import "./index.css";
@@ -8,6 +8,7 @@ interface CredentialsContainerProps {}
 export const CredentialsContainer: React.FC<CredentialsContainerProps> = () => {
   const emailInputRef = useRef<HTMLInputElement>(null);
   const passwordInputRef = useRef<HTMLInputElement>(null);
+  const [error, setError] = useState("");
 
   const onSignIn = (e?: any) => {
     e?.preventDefault();
@@ -53,7 +54,7 @@ export const CredentialsContainer: React.FC<CredentialsContainerProps> = () => {
           />
         </div>
         <div className="error-container">
-          <AuthError message="Invalid email" />
+          {error && <AuthError message={error} />}
         </div>
         <div className="login-button-container">
           <button
