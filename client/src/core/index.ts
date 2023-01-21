@@ -1,2 +1,3 @@
-export { Http } from "./app.httpClient";
+export * from "./httpClient";
 export * from "./app.clientStorage";
+export * from "./env";

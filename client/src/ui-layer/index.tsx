@@ -6,14 +6,6 @@ export const App = createBrowserRouter([
   {
     path: "/",
     element: (
-      <ProtectedRoute>
-        <div />
-      </ProtectedRoute>
-    ),
-  },
-  {
-    path: "/home",
-    element: (
       <>
         <ProtectedRoute>
           <HomePage />

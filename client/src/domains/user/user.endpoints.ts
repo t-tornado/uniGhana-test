@@ -1,3 +1,3 @@
 export const UserEndpoints = {
-  getProfile: "/profile",
+  getProfile: "/user/profile",
 };

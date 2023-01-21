@@ -1,3 +1,4 @@
+import { AxiosError } from "axios";
 import React, { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthController } from "../../../controller";
@@ -25,8 +26,8 @@ export const CredentialsContainer: React.FC<CredentialsContainerProps> = () => {
       try {
         if (!email || !emailIsValid) throw new Error("Enter a valid e-mail");
         if (!password) throw new Error("Enter a password");
-        await authMethod();
-        navigate("/home");
+        await authMethod({ email, password });
+        navigate("/");
       } catch (error: any) {
         if (error.message.startsWith("Request failed with")) {
           setError("Could not connect with server");

@@ -1,4 +1,5 @@
 import axios, { Axios, AxiosRequestConfig, AxiosResponse } from "axios";
+import { ENV } from "../env";
 
 class HttpClientClass {
   private base: Axios;
@@ -45,4 +46,4 @@ class HttpClientClass {
   }
 }
 
-export const Http = new HttpClientClass("");
+export const Http = new HttpClientClass(ENV.serverUrl ?? "");
