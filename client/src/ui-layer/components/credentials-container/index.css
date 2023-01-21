@@ -63,9 +63,6 @@
   column-gap: 50px;
 }
 
-.password-input {
-}
-
 #login-form {
   display: flex;
   flex-direction: column;
@@ -86,4 +83,8 @@
 .sign-out {
   background-color: #472183;
   /* background-color: #227c70; */
+}
+
+.error-container {
+  margin: 5px;
 }

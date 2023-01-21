@@ -1,5 +1,6 @@
 import React, { useRef } from "react";
 import { Logo } from "../atoms";
+import { AuthError } from "../AuthError";
 import "./index.css";
 
 interface CredentialsContainerProps {}
@@ -50,6 +51,9 @@ export const CredentialsContainer: React.FC<CredentialsContainerProps> = () => {
             className="auth-input"
             placeholder="* * * * * *"
           />
+        </div>
+        <div className="error-container">
+          <AuthError message="Invalid email" />
         </div>
         <div className="login-button-container">
           <button
