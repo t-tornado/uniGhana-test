@@ -13,7 +13,12 @@ const signup = async (payload: AuthInterface) => {
   ClientStorage.set(ClientStorageItems.USER, currentUser);
 };
 
+const signout = () => {
+  ClientStorage.reset();
+};
+
 export const AuthController = {
   login,
   signup,
+  signout,
 };
