@@ -1,6 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import { ProtectedRoute } from "./hoc";
-import { LoginPage } from "./views";
+import { HomePage, LoginPage } from "./views";
 
 export const App = createBrowserRouter([
   {
@@ -16,9 +16,7 @@ export const App = createBrowserRouter([
     element: (
       <>
         <ProtectedRoute>
-          <div>
-            <h1>Welcome Homepage</h1>
-          </div>
+          <HomePage />
         </ProtectedRoute>
       </>
     ),

@@ -7,7 +7,7 @@ interface Props {
 export const ProtectedRoute = ({ children }: Props) => {
   const navigate = useNavigate();
   const isLoggedIn = true;
-  if (isLoggedIn) {
+  if (!isLoggedIn) {
     navigate("/login");
     return null;
   }
