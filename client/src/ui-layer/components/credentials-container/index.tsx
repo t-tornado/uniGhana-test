@@ -1,4 +1,6 @@
 import React, { useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { AuthController } from "../../../controller";
 import { Logo } from "../atoms";
 import { AuthError } from "../AuthError";
 import "./index.css";
@@ -8,28 +10,33 @@ interface CredentialsContainerProps {}
 export const CredentialsContainer: React.FC<CredentialsContainerProps> = () => {
   const emailInputRef = useRef<HTMLInputElement>(null);
   const passwordInputRef = useRef<HTMLInputElement>(null);
+  const navigate = useNavigate();
   const [error, setError] = useState("");
 
-  const onSignIn = (e?: any) => {
-    e?.preventDefault();
-    const email = emailInputRef.current?.value;
-    const password = passwordInputRef.current?.value;
-    const emailValidationRegex = new RegExp(
-      /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
-    );
-    const emailIsValid = emailValidationRegex.test(email ?? "");
-    if (email && password) {
-      console.log(email, password);
-    }
+  const authMethod = (authMethod: any) => {
+    return async function (e?: any) {
+      e?.preventDefault();
+      const email = emailInputRef.current?.value;
+      const password = passwordInputRef.current?.value;
+      const emailValidationRegex = new RegExp(
+        /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
+      );
+      const emailIsValid = emailValidationRegex.test(email ?? "");
+      try {
+        if (!email || !emailIsValid) throw new Error("Enter a valid e-mail");
+        if (!password) throw new Error("Enter a password");
+        await authMethod();
+        navigate("/home");
+      } catch (error: any) {
+        if (error.message.startsWith("Request failed with")) {
+          setError("Could not connect with server");
+        } else setError(error.message);
+      }
+    };
   };
-  const onSignUp = (e?: any) => {
-    e?.preventDefault();
-    const email = emailInputRef.current?.value;
-    const password = passwordInputRef.current?.value;
-    if (email && password) {
-      console.log(email, password);
-    }
-  };
+
+  const onSignIn = authMethod(AuthController.login);
+  const onSignUp = authMethod(AuthController.signup);
 
   return (
     <section
