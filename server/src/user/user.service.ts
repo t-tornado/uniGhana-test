@@ -30,6 +30,12 @@ class UserServiceClass {
     } satisfies UserType;
     await this.repository.addDocument(transformedUser);
   };
+
+  getProfile = async (email: string) => {
+    if (!email) throw new Error("Provide an email");
+    const user = await UserRepository.getDocument({ email });
+    return user;
+  };
 }
 
 export const UserService = new UserServiceClass();

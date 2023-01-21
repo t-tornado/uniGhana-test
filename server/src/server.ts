@@ -23,7 +23,7 @@ export class NodeServerClass {
     this.createRoutes(this.routes);
   };
 
-  start = async (port?: string) => {
+  start = async () => {
     try {
       const port = ENV.port;
       this.init();

@@ -20,7 +20,19 @@ class UserControllerClass extends BaseControllerClass {
       const userPayload = req.body as UserType;
       await UserService.signup(userPayload);
       this.success(res, { message: "Signup successful" });
-    } catch (error: any) {}
+    } catch (error: any) {
+      this.clientError(res, error.message);
+    }
+  };
+
+  getProfile = async (req: Request, res: Response) => {
+    try {
+      const { email } = req.query;
+      const profile = await UserService.getProfile(email as string);
+      this.success(res, profile);
+    } catch (error: any) {
+      this.clientError(res, error.message);
+    }
   };
 }
 
