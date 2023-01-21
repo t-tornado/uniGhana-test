@@ -1,0 +1,15 @@
+@import url("https://fonts.googleapis.com/css?family=Questrial");
+
+.logo-text {
+  font-family: "Questrial", sans-serif;
+  font-size: 20px;
+  color: #7e55f6;
+}
+
+.period {
+  height: 5px;
+  width: 5px;
+  background-color: #7e55f6;
+  display: inline-block;
+  margin-left: 2px;
+}

@@ -6,9 +6,9 @@ export const App = createBrowserRouter([
   {
     path: "/",
     element: (
-      <div>
-        <h1>Welcome to UniGhana Test App</h1>
-      </div>
+      <ProtectedRoute>
+        <div />
+      </ProtectedRoute>
     ),
   },
   {
