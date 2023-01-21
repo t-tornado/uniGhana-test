@@ -1,10 +1,16 @@
 import React from "react";
 import "./index.css";
 
-export const Logo: React.FC = () => {
+interface LogoProps {
+  size?: string;
+}
+
+export const Logo: React.FC<LogoProps> = ({ size }) => {
   return (
     <span>
-      <span className="logo-text">UniGhana</span>
+      <span style={{ fontSize: `${size}px` }} className="logo-text">
+        UniGhana
+      </span>
       <div className="period" />
     </span>
   );

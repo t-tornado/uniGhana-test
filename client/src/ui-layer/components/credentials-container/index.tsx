@@ -45,7 +45,7 @@ export const CredentialsContainer: React.FC<CredentialsContainerProps> = () => {
       data-testid="login-credentials-container"
     >
       <div className="logo-container">
-        <Logo />
+        <h4 className="welcome-text">Welcome back</h4>
       </div>
       <form data-testid="login-form" id="login-form">
         <div className="auth-input-container">
