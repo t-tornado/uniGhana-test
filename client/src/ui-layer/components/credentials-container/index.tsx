@@ -1,8 +1,6 @@
-import { AxiosError } from "axios";
 import React, { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthController } from "../../../controller";
-import { Logo } from "../atoms";
 import { AuthError } from "../AuthError";
 import "./index.css";
 
@@ -13,6 +11,7 @@ export const CredentialsContainer: React.FC<CredentialsContainerProps> = () => {
   const passwordInputRef = useRef<HTMLInputElement>(null);
   const navigate = useNavigate();
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const authMethod = (authMethod: any) => {
     return async function (e?: any) {
@@ -26,12 +25,15 @@ export const CredentialsContainer: React.FC<CredentialsContainerProps> = () => {
       try {
         if (!email || !emailIsValid) throw new Error("Enter a valid e-mail");
         if (!password) throw new Error("Enter a password");
+        setLoading(true);
         await authMethod({ email, password });
         navigate("/");
       } catch (error: any) {
         if (error.message.startsWith("Request failed with")) {
           setError("Could not connect with server");
         } else setError(error.message);
+      } finally {
+        setLoading(false);
       }
     };
   };
@@ -62,7 +64,11 @@ export const CredentialsContainer: React.FC<CredentialsContainerProps> = () => {
           />
         </div>
         <div className="error-container">
-          {error && <AuthError message={error} />}
+          {loading ? (
+            <p>loading . . .</p>
+          ) : error ? (
+            <AuthError message={error} />
+          ) : null}
         </div>
         <div className="login-button-container">
           <button
