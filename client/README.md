@@ -2,6 +2,14 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Setup
+
+Connect the client to the server by adding a **.env** file to the root of the app.
+
+```bash
+REACT_APP_SERVER_URL=<link _to_server>
+```
+
 ## Available Scripts
 
 In the project directory, you can run:
