@@ -1,4 +1,4 @@
-import { PasswordUtil } from "../core";
+import { AppException, PasswordUtil } from "../core";
 import { UserType } from "./user.model";
 import { UserRepository } from "./user.repository";
 
@@ -22,6 +22,8 @@ class UserServiceClass {
   };
 
   signup = async ({ email, password, username }: UserType) => {
+    const user = await this.repository.getDocument({ email });
+    if (user) throw new AppException("User with this email already exists");
     const passwordHash = await PasswordUtil.encryptPassword(password);
     const transformedUser = {
       email,
